@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <table>
+        <tr>
+            <th>Matricula</th>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno[0] }}</td>
+            <td>{{ aluno[1] }}</td>
+            <td><a href="/alunos/{{aluno[0]}}/editar">Editar</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

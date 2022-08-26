@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<form method="post">
+    <table>
+        <tr>
+            <th>
+                <label for="txt_matricula">Matricula</label>
+            </th>
+            <td>
+                <input type="text" name="txt_matricula" id="txt_matricula" value="{{aluno[0]}}" readonly>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="txt_nome">Nome</label>
+            </th>
+            <td>
+                <input type="text" name="txt_nome" id="txt_nome" value="{{aluno[1]}}">
+            </td>
+        </tr>
+    </table>
+
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
