@@ -58,3 +58,39 @@ def alunos_editar(matricula):
     con.close()
 
     return render_template('aluno-editar.html', aluno=aluno)
+
+@app.route('/turmas/professor')
+def turmas_professor():
+
+    con = sqlite3.connect("gestao_escolar.db")
+
+    cur = con.cursor()
+
+    sql = """
+        SELECT
+            prof.matricula AS mat_professor,
+            prof.nome AS prof_nome,
+            tur.codigo,
+            tur.data_inicio,
+            tur.periodo,
+            tur_alu.matricula_aluno,
+            alu.nome AS alu_nome
+        FROM
+            Professores AS prof
+        INNER JOIN
+            Turmas AS tur ON prof.matricula = tur.matricula_professor
+        INNER JOIN
+            Turmas_Alunos AS tur_alu ON tur.codigo = tur_alu.codigo_turma
+        INNER JOIN
+            Alunos AS alu ON tur_alu.matricula_aluno = alu.matricula
+        WHERE
+            prof.nome = 'Felipe'
+    """
+
+    cur.execute(sql)
+
+    turmas_professor = cur.fetchall()
+
+    con.close()
+
+    return render_template('turmas-professor.html', turmas_professor=turmas_professor)
